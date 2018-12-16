@@ -6,10 +6,9 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 
 dataset = pd.read_csv("train.csv")  # loading dataset
-dataset = dataset.apply(pd.to_numeric, errors='coerce')
+#  dataset = dataset.apply(pd.to_numeric, errors='coerce')
+dataset = pd.get_dummies(dataset)
 dataset.fillna(0, inplace=True)
-
-forecast_out = int(math.ceil(0.01*len(dataset)))
 
 X = np.array(dataset.values[:, 2:377]) #  data features
 Y = np.array(dataset.values[:, 1]) #  data label (what we predict)
